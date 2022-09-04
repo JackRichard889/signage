@@ -10,19 +10,23 @@
       iframe{
         vertical-align:middle;
       }
-  
-      .wths-banner{
-        text-align:center;
+      
+      .wths-banner {
+        display: grid;
+        grid-template-columns: 1fr 6fr 1fr;
         height: 50px;
         background-color:#0070BB;
-        font-weight:bold;
-        letter-spacing: 2px;
         position:absolute;
         bottom:0;
         margin:auto;
         width:100vw;
+      }
+  
+      .wths-banner p {
+        text-align:center;
+        font-weight:bold;
+        letter-spacing: 2px;
         color:white;
-        line-height: 50px;
       }
     </style>
     
@@ -50,6 +54,53 @@
   frameborder="0" width="2304" height="1325" allowfullscreen="true" mozallowfullscreen="true"
   webkitallowfullscreen="true"
   style="border: none; max-width:100%; max-height:100vh"></iframe>
-  <div class="wths-banner">WORCESTER TECHNICAL HIGH SCHOOL</div>
-  </body>
-</html>
+    <div class="wths-banner">
+      <p></p>
+      <p style="justify-self: center;">WORCESTER TECHNICAL HIGH SCHOOL</p>
+      <p id="period"></p>
+    </div>
+    <script>
+      const timeOf = (hr, min) => ((hr * 60 * 60) + (min * 60)) * 1000;
+      let period_content = document.getElementById("period");
+      let period_1 = timeOf(7, 20);
+      let period_2 = timeOf(8, 8);
+      let period_3 = timeOf(8, 52);
+      let period_4 = timeOf(9, 36);
+      let period_5a = timeOf(10, 20);
+      let period_5b = timeOf(10, 51);
+      let period_6 = timeOf(11, 35);
+      let period_7 = timeOf(12, 19);
+      let period_8 = timeOf(13, 3);
+      let day_over = timeOf(13, 43);
+      
+      setInterval(() => {
+        let current = new Date();
+        let time = timeOf(current.getHours(), current.getMinutes());
+        
+        if (time < period_1) {
+          period_content.innerHTML = "";
+        } else if (time < period_2) {
+          period_content.innerHTML = "PERIOD 1";
+        } else if (time < period_3) {
+          period_content.innerHTML = "PERIOD 2";
+        } else if (time < period_4) {
+          period_content.innerHTML = "PERIOD 3";
+        } else if (time < period_5a) {
+          period_content.innerHTML = "PERIOD 4";
+        } else if (time < period_5b) {
+          period_content.innerHTML = "PERIOD 5A";
+        } else if (time < period_6) {
+          period_content.innerHTML = "PERIOD 5B";
+        } else if (time < period_7) {
+          period_content.innerHTML = "PERIOD 6";
+        } else if (time < period_8) {
+          period_content.innerHTML = "PERIOD 7";
+        } else if (time < day_over) {
+          period_content.innerHTML = "PERIOD 8";
+        } else {
+          period_content.innerHTML = "";
+        }
+      }, 1000);
+    </script>
+
+</body></html>
