@@ -40,6 +40,7 @@
       timeoutId = setTimeout(() => 
         {
           clearTimeout(timeoutId); // If we don't clear the timeout, memory leak (very bad (._.`))
+          clearInterval(periodInterval);
           window.location.reload();
         },
         (10 * 60 * 1000) // Ten Minutes
@@ -73,7 +74,7 @@
       let period_8 = timeOf(13, 3);
       let day_over = timeOf(13, 43);
       
-      setInterval(() => {
+      const periodInterval = setInterval(() => {
         let current = new Date();
         let time = timeOf(current.getHours(), current.getMinutes());
         
